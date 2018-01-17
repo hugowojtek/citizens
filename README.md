@@ -1,5 +1,3 @@
-# Do wszystkich zadań staramy się napisać testy jednostkowe!
-
 ## CSV
 W aplikacji, w katalogu src/main/resources są wygenerowane dwa pliki: person.csv oraz animal.csv. Są to pliki w postaci CSV (Comma-Separated Values), czyli pliki, w których wartości są rozdzielone przecinkami. Każda linia pliku oznacza jeden zestaw danych, w którym informacje zawarte są na ściśle określonych pozycjach:
 W pliku person.csv w kolejnych miejscach w linii znajdują się:
