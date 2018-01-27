@@ -54,7 +54,7 @@ public class CsvLine implements Iterable<String> {
      * @return
      */
     public static CsvLine fromTextLine(String textLine) {
-        String[] splittedLine = textLine.split(",");
+        String[] splittedLine = textLine.split(CSV_SEPARATOR);
         CsvLine csvLine = new CsvLine();
         for (String lineElement : splittedLine) {
             csvLine.addElement(lineElement);
