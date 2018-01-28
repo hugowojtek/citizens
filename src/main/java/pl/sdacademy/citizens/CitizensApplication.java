@@ -5,7 +5,9 @@ import pl.sdacademy.citizens.model.Person;
 
 import java.io.File;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CitizensApplication {
 
@@ -68,6 +70,59 @@ public class CitizensApplication {
     public void write1(List<Person> people) {
         File destination = new File("src\\main\\resources\\method1.csv");
         personWriter.firstMethod(destination, people);
+    }
+
+    /**
+     * W klasie CitizensApplication napisz metodę,
+     * która będzie zliczać, ile jest osób z danym nazwiskiem.
+     * @param people
+     */
+    public long countLastName(List<Person> people, String lastName){
+        long count = people.stream().filter(person -> person.getLastName().equals(lastName)).count();
+        /*
+        long count = 0L;
+        for (Person person : people) {
+            if (person.getLastName().equals(lastName)) {
+                count++;
+            }
+        }
+         */
+        return count;
+//        System.out.println(count + " osób o nazwisku "+ lastName);
+    }
+
+    /**
+     * Zliczanie osób w sposób iteracyjny
+     * nazwisko - > ilość wystąpień
+     * @param people
+     */
+    public void mapLastName(List<Person> people){
+        long start = System.currentTimeMillis();
+        HashMap<String, Long> stringLongHashMap = new HashMap<>();
+        for (Person person : people) {
+            if (!stringLongHashMap.containsKey(person.getLastName())) {
+                stringLongHashMap.put(person.getLastName(), countLastName(people, person.getLastName()));
+            }
+        }
+        long stop = System.currentTimeMillis();
+        for (String s : stringLongHashMap.keySet()) {
+            System.out.println(s +" -> "+ stringLongHashMap.get(s));
+        }
+        System.out.println("Policzone w "+ (stop - start));
+    }
+
+    public void mapLastNameLambda(List<Person> people){
+        PeopleUtilities peopleUtilities = new PeopleUtilities(people);
+        long start = System.currentTimeMillis();
+        Map<String, Long> lastNameSummary = peopleUtilities.createLastNameSummary();
+        long stop = System.currentTimeMillis() - start;
+
+        for (String s : lastNameSummary.keySet()) {
+            System.out.println(s+" -> "+ lastNameSummary.get(s));
+        }
+
+        System.out.println("Policzone w "+ stop);
+
     }
 }
 

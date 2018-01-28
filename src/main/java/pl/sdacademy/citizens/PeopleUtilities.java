@@ -43,6 +43,12 @@ public class PeopleUtilities {
                 .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
     }
 
+    public Map<String, Long> createLastNameSummary() {
+        emptyListValidation();
+        return people.stream()
+                .map(Person::getLastName)
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+    }
 
     public List<Person> validatePersonEntries() {
         emptyListValidation();

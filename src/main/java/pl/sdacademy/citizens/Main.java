@@ -10,7 +10,10 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         CitizensApplication app = new CitizensApplication();
         List<Person> people = app.process();
-        app.writeModifiedEntries(people);
-        app.write3(people);
-    }
+        app.mapLastName(people);
+        System.out.println("==============================");
+        app.mapLastNameLambda(people);
+//        app.writeModifiedEntries(people);
+//        app.write1(people);
+     }
 }
