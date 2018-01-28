@@ -69,8 +69,7 @@ public class CsvLine implements Iterable<String> {
                 .add(person.getName())
                 .add(person.getLastName())
                 .add(person.getSex())
-                .add(String.valueOf(person.getBirthDate()))
-                .add(person.getAnimals().toString());
+                .add(String.valueOf(person.getBirthDate()));
         if (!(person.getInvalidEntryReason() == null)) {
             sj.add(person.getInvalidEntryReason());
         }
@@ -79,15 +78,10 @@ public class CsvLine implements Iterable<String> {
 
     public static String modifiedEntryToTextLine(Person person) {
         StringJoiner sj = new StringJoiner(", ");
-        Integer[] array = person.noOfDogsCatsParrotsFish();
         sj.add(person.getId().toString())
                 .add(person.getName())
                 .add(person.getHiddenLastName())
-                .add(String.valueOf(person.getApproximateAge()))
-                .add(String.valueOf(array[0]))
-                .add(String.valueOf(array[1]))
-                .add(String.valueOf(array[2]))
-                .add(String.valueOf(array[3]));
+                .add(String.valueOf(person.getApproximateAge()));
         return sj.toString();
     }
 

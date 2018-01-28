@@ -10,7 +10,6 @@ public class Person {
     private String lastName;
     private String sex;
     private LocalDate birthDate;
-    private List<Animal> animals = new ArrayList<>();
     private String invalidEntryReason;
 
     public Person(Long id, String name, String lastName, String sex, LocalDate birthDate) {
@@ -27,7 +26,6 @@ public class Person {
         this.lastName = lastName;
         this.sex = sex;
         this.birthDate = birthDate;
-        this.animals = animals;
     }
 
     public static class Builder {
@@ -62,7 +60,6 @@ public class Person {
         this.lastName = builder.lastName;
         this.sex = builder.sex;
         this.birthDate = builder.birthDate;
-        this.animals = builder.animals;
     }
 
     public Person(CsvLine line) {
@@ -113,24 +110,12 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    public List<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(List<Animal> animals) {
-        this.animals = animals;
-    }
-
     public String getInvalidEntryReason() {
         return invalidEntryReason;
     }
 
     public void setInvalidEntryReason(String invalidEntryReason) {
         this.invalidEntryReason = invalidEntryReason;
-    }
-
-    public int getNumberOfAnimals() {
-        return animals.size();
     }
 
     public int getAge() {
@@ -179,32 +164,6 @@ public class Person {
         return String.valueOf(lastNameChars);
     }
 
-    public Integer[] noOfDogsCatsParrotsFish() {
-        Integer[] array = {0, 0, 0, 0};
-        if (getAnimals().isEmpty()) {
-            return array;
-        }
-        List<Animal> personAnimals = getAnimals();
-        for (Animal animal : personAnimals) {
-            if (animal.getSpecies().equals("DOG")) {
-                array[0] = array[0] + 1;
-            }
-            if (animal.getSpecies().equals("CAT")) {
-                array[1] = array[1] + 1;
-            }
-            if (animal.getSpecies().equals("PARROT")) {
-                array[2] = array[2] + 1;
-            }
-            if (animal.getSpecies().equals("FISH")) {
-                array[3] = array[3] + 1;
-            }
-        }
-        return array;
-    }
-
-    public void addAnimal(Animal animal) {
-        animals.add(animal);
-    }
 
     @Override
     public String toString() {
@@ -214,7 +173,6 @@ public class Person {
                 ", lastName='" + lastName + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birthDate=" + birthDate +
-                ", animals=" + animals +
                 "\n";
     }
 }

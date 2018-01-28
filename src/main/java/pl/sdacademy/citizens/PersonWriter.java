@@ -57,8 +57,6 @@ public class PersonWriter {
                 oneLine.append(person.getSex());
                 oneLine.append(CSV_SEPARATOR);
                 oneLine.append(person.getBirthDate());
-                oneLine.append(CSV_SEPARATOR);
-                oneLine.append(person.getAnimals());
                 bw.write(oneLine.toString());
                 bw.newLine();
             }

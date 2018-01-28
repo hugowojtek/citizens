@@ -21,13 +21,6 @@ public class AnimalUtilities {
      * @return Map as written above
      */
 
-    public Map<String, Long> mapAnimalsOfSpecies() {
-        emptyListValidation();
-        return animals.stream()
-                .map(Animal::getSpecies)
-                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
-    }
-
     private void emptyListValidation() {
         if (animals.isEmpty()) {
             throw new EmptyListException("The list is empty!");

@@ -61,13 +61,6 @@ public class PeopleUtilities {
         return people.stream().filter(person -> !person.validateData()).collect(Collectors.toList());
     }
 
-    public List<Person> peopleWithAtLeastTwoAnimals() {
-        emptyListValidation();
-        return people.stream()
-                .filter(person -> person.getNumberOfAnimals() >= 2)
-                .collect(Collectors.toList());
-    }
-
     private void emptyListValidation() {
         if (people.isEmpty()) {
             throw new EmptyListException("The list is empty!");
