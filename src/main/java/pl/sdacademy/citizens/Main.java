@@ -44,10 +44,14 @@ public class Main {
     }
 
     public static void ShowMap(LinkedHashMap<String,List<Person>> result){
-        for (Map.Entry<String,List<Person>>entry:result.entrySet()){
-            //System.out.println(entry.getKey()+"--"+entry.getValue());
-            System.out.println(entry);
-        }
+       for (String s:result.keySet()){
+           List<Person> people = result.get(s);
+           System.out.println();
+           System.out.println(s);
+           for (Person person1:people){
+               System.out.println(person1.getLastName());
+           }
+       }
     }
 
 
