@@ -11,6 +11,17 @@ public class Person {
     private String sex;
     private LocalDate birthDate;
     private String invalidEntryReason;
+    private List<Animal> animalList;
+
+    public Person(Long id, String name, String lastName, String sex, LocalDate birthDate, String invalidEntryReason, List<Animal> animalList) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.birthDate = birthDate;
+        this.invalidEntryReason = invalidEntryReason;
+        this.animalList = animalList;
+    }
 
     public Person(Long id, String name, String lastName, String sex, LocalDate birthDate) {
         this.id = id;
@@ -18,6 +29,7 @@ public class Person {
         this.lastName = lastName;
         this.sex = sex;
         this.birthDate = birthDate;
+
     }
 
     public Person(Long id, String name, String lastName, String sex, LocalDate birthDate, List<Animal> animals) {
