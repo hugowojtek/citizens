@@ -5,6 +5,7 @@ import pl.sdacademy.citizens.model.Person;
 
 import java.io.File;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +124,35 @@ public class CitizensApplication {
 
         System.out.println("Policzone w "+ stop);
 
+    }
+
+    public void groupByName(List<Person> people){
+        HashMap<String, List<Person>> pipulHashMap = new HashMap<>();
+        for (Person person : people) {
+            if (!pipulHashMap.containsKey(person.getName())) {
+                pipulHashMap.put(person.getName(), getListOfPersonWithName(people, person.getName()));
+            }
+        }
+
+        for (String s : pipulHashMap.keySet()) {
+            List<Person> people1 = pipulHashMap.get(s);
+            System.out.print(s);
+            for (Person person : people1) {
+                System.out.println(" - "+person.getLastName()+" "+ person.getBirthDate());
+            }
+        }
+
+        //na wyjsciu wyswietla listę osób dla imienia
+    }
+
+    private List<Person> getListOfPersonWithName(List<Person> people, String name) {
+        ArrayList<Person> result = new ArrayList<>();
+        for (Person person : people) {
+            if (person.getName().equals(name)) {
+                result.add(person);
+            }
+        }
+        return result;
     }
 }
 
