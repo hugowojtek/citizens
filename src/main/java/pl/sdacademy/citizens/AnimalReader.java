@@ -1,4 +1,8 @@
-package pl.sdacademy.citizens.model;
+package pl.sdacademy.citizens;
+
+import pl.sdacademy.citizens.model.Animal;
+import pl.sdacademy.citizens.model.CsvFile;
+import pl.sdacademy.citizens.model.CsvLine;
 
 import java.io.File;
 import java.text.ParseException;
