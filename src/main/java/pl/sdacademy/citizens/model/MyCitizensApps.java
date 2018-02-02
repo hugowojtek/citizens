@@ -88,4 +88,20 @@ public class MyCitizensApps {
     }
 
 
+    public List<Person> calculate_5(List<Person> people) {
+        List<Person> list = new LinkedList<>();
+        for (Person person:people){
+            if ((person.getAge()>35)&&(person.getAge()<55)) list.add(person);
+        }
+        return list;
+    }
+
+    public List<Person> calculate_6(List<Person> people) {
+        List<Person> list = new ArrayList<>();
+        for (Person person:people){
+            if ((person.getAge()>=60)&&(person.getSex().equals("F"))) list.add(person);
+            if ((person.getAge()>=65)&&(person.getSex().equals("M"))) list.add(person);
+        }
+        return list;
+    }
 }

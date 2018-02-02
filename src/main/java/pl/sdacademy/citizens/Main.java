@@ -22,6 +22,10 @@ public class Main {
 
         Map<String,List<Person>> map4 = new MyCitizensApps().calculate_4(people);
 
+        List<Person> list1 = new MyCitizensApps().calculate_5(people);
+
+        List<Person> list2 = new MyCitizensApps().calculate_6(people);
+
         System.out.println();
 //        app.mapLastName(people);
 //        System.out.println("==============================");
