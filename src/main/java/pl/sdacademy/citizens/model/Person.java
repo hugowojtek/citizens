@@ -11,7 +11,21 @@ public class Person {
     private String sex;
     private LocalDate birthDate;
     private String invalidEntryReason;
+
+
+    public List<Animal> getAnimalList() {
+        return animalList;
+    }
+
     private List<Animal> animalList;
+
+    public void addAnimal(Animal animal){
+        if (this.animalList == null){
+            this.animalList = new ArrayList<>();
+
+        }
+        this.animalList.add(animal);
+        }
 
     public Person(Long id, String name, String lastName, String sex, LocalDate birthDate, String invalidEntryReason, List<Animal> animalList) {
         this.id = id;

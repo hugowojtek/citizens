@@ -5,24 +5,34 @@ import pl.sdacademy.citizens.model.Person;
 
 import java.io.File;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class CitizensApplication {
 
     private PersonReader personReader;
     private PersonWriter personWriter;
+    private AnimalReader animalReader;
 
 
     public CitizensApplication() {
         this.personReader = new PersonReader();
         this.personWriter = new PersonWriter();
+        this.animalReader = new AnimalReader();
     }
 
+
+
+    public List<Animal> processAnimals() throws ParseException{
+        ClassLoader classLoader = this.getClass().getClassLoader();
+        File file = new File(classLoader.getResource("animal_2.csv").getFile());
+        List<Animal> animals = animalReader.readFromFile(file);
+        /*    for (Animal animal:animals){
+                System.out.println(animal);
+            }*/
+        return animals;
+    }
     public List<Person> process() throws ParseException {
-        File personFile = new File(getClass().getClassLoader().getResource("person.csv").getFile());
+        File personFile = new File(getClass().getClassLoader().getResource("person_2.csv").getFile());
         List<Person> people = personReader.readFromFile(personFile);
         System.out.println("Starting process of adding animals to people");
         int i = 0;
@@ -108,24 +118,27 @@ public class CitizensApplication {
 
     }
 
-    public void groupByName(List<Person> people){
-        HashMap<String, List<Person>> pipulHashMap = new HashMap<>();
+    public void groupByName(List<Person> people) {
+        Map<String, List<Person>> peopleMap = new TreeMap<>();
         for (Person person : people) {
-            if (!pipulHashMap.containsKey(person.getName())) {
-                pipulHashMap.put(person.getName(), getListOfPersonWithName(people, person.getName()));
+            if (!peopleMap.containsKey(person.getName())) {
+                peopleMap.put(person.getName(), getListOfPersonWithName(people, person.getName()));
             }
         }
-
-        for (String s : pipulHashMap.keySet()) {
-            List<Person> people1 = pipulHashMap.get(s);
+/*
+        for (String s : peopleMap.keySet()) {
             System.out.print(s);
-            for (Person person : people1) {
-                System.out.println(" - "+person.getLastName()+" "+ person.getBirthDate());
-            }
-        }
 
-        //na wyjsciu wyswietla listę osób dla imienia
+            List<Person> people1 = peopleMap.get(s);
+            for (Person person : people1) {
+                System.out.println(" - " + person.getLastName() + " " + person.getBirthDate());
+            }
+
+        }
+*/
     }
+
+
 
     private List<Person> getListOfPersonWithName(List<Person> people, String name) {
         ArrayList<Person> result = new ArrayList<>();
@@ -136,5 +149,33 @@ public class CitizensApplication {
         }
         return result;
     }
+
+
+    public void pairPersonAnimal(List<Person> people, List<Animal> animals) {
+        for (Person person:people){
+            for (Animal animal:animals){
+                if (person.getId().equals(animal.getId())) person.addAnimal(animal);
+            }
+        }
+    }
+
+    public void filterPerson(List<Person> people) {
+        List<Person> personList = new ArrayList<>();
+        personList  = new PeopleUtilities(people).filterByAgeFrom35To55();
+
+
+        }
+
+    public void checkQuantityOfAnimals(List<Person> people) {
+        int male=0;
+        int female=0;
+        for (Person person:people) {
+            if ((person.getSex().equals("M")&&person.getAnimalList()!=null)) male++;
+            if ((person.getSex().equals("F")&&person.getAnimalList()!=null)) female++;
+        }
+        System.out.println("Faceci mają w sumie:" + male+" zwierząt");
+        System.out.println("Kobity mają w sumie:" + female+" zwierząt");
+    }
 }
+
 
