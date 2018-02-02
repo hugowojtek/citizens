@@ -14,7 +14,7 @@ public class MyCitizensApps {
                 map.put(person.getLastName(),count(people,person.getLastName()));
 
         }
-    return map;
+        return map;
     }
 
     private Integer count(List<Person> people, String currentlastName) {
@@ -46,6 +46,46 @@ public class MyCitizensApps {
         return list;
     }
 
-    //nazwisko
+    //nazwisko i id + imię
+
+    public Map<String,Map<Long,String>> calculate_3(List<Person> people) {
+        Map<String,Map<Long,String>> map = new LinkedHashMap<>();
+        for (Person person:people){
+            if(!(map.containsKey(person.getLastName())))
+                map.put(person.getLastName(),count_3(people,person.getLastName()));
+        }
+        return map;
+    }
+
+    private Map<Long,String> count_3(List<Person> people, String currentlastName) {
+        Map<Long,String> map = new LinkedHashMap<>();
+        for (Person person:people){
+            if (person.getLastName().equals(currentlastName))
+                map.put(person.getId(),person.getName());
+        }
+        return map;
+    }
+
+
+    //zgrupowanie po imieniu
+
+    public Map<String,List<Person>> calculate_4(List<Person> people) {
+        Map<String,List<Person>> map = new LinkedHashMap<>();
+        for (Person person:people){
+            if (!(map.containsKey(person.getName())))
+                map.put(person.getName(),count_4(people,person.getName()));
+        }
+        return map;
+    }
+
+    private List<Person> count_4(List<Person> people, String currentName) {
+        List<Person> list = new LinkedList<>();
+        for (Person person:people){
+            if (person.getName().equals(currentName))
+                list.add(person);
+        }
+        return list;
+    }
+
 
 }

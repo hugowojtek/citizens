@@ -5,9 +5,7 @@ import pl.sdacademy.citizens.model.MyCitizensApps;
 import pl.sdacademy.citizens.model.Person;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
 
@@ -19,6 +17,10 @@ public class Main {
         Map<String,Integer> map1 = new MyCitizensApps().calculate(people);
 
         Map<String,List<String>> map2 = new MyCitizensApps().calculate_2(people);
+
+        Map<String,Map<Long,String>> map3 = new MyCitizensApps().calculate_3(people);
+
+        Map<String,List<Person>> map4 = new MyCitizensApps().calculate_4(people);
 
         System.out.println();
 //        app.mapLastName(people);
