@@ -1,7 +1,6 @@
 package pl.sdacademy.citizens;
 
 import pl.sdacademy.citizens.model.Animal;
-import pl.sdacademy.citizens.model.MyCitizensApps;
 import pl.sdacademy.citizens.model.Person;
 
 import java.text.ParseException;
@@ -25,6 +24,15 @@ public class Main {
         List<Person> list1 = new MyCitizensApps().calculate_5(people);
 
         List<Person> list2 = new MyCitizensApps().calculate_6(people);
+
+        List<Person> list3 = new MyCitizensApps().calculate_7(people);
+
+        List<Person> list4 = new MyCitizensApps().calculate_8(people, animals);
+
+        Map<String,Integer> map5 = new MyCitizensApps().calculate_9(animals);
+
+        Map<String,List<Person>> map6 = new MyCitizensApps().calculate_10(people,animals);
+
 
         System.out.println();
 //        app.mapLastName(people);
