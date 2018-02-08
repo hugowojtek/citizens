@@ -46,7 +46,9 @@ public class Main {
 
         List<Person> list70 = selectedRentiredPerson(people);
 
-        long counter = CountRentiredPeople(people);
+        long counter = CountRentiredPeopleForEach(people);
+
+        long counter1 = CountRentiredPeopleLambda(people);
 
         List<Person> list1 = new MyCitizensApps().calculate_5(people);
 
@@ -58,9 +60,15 @@ public class Main {
 
         List<Person> list4 = new MyCitizensApps().calculate_8(people, animals);
 
-        Map<String,Integer> map5 = new MyCitizensApps().calculate_9(animals);
+        Map<String,Integer> map5_1 = new MyCitizensApps().calculate_90(animals);
 
-        List<Person> list5 = new MyCitizensApps().calculate_10(list4);
+        Map<String,Integer> map5_2 = new MyCitizensApps().calculate_91(animals);
+
+        Map<String,Long> map5_3 = CoutingAnimalsBySpecies(animals);
+
+        List<Person> list5_4 = new MyCitizensApps().calculate_10(list4);
+        
+        List<Person> list5_5 = CountingPersonHaveLimitAnimals(list4,2);
 
         List<Person> list6_1 = new MyCitizensApps().calculate_11(people);
 
@@ -76,6 +84,8 @@ public class Main {
         String species="CAT";
         Integer cats = new MyCitizensApps().calculate_15(people,id_person,species);
 
+        //Long animalsy = counterOfAnimalsAtPerson(people,id_person,species);
+
         System.out.println();
 //        app.mapLastName(people);
 //        System.out.println("==============================");
@@ -83,6 +93,23 @@ public class Main {
 //        app.writeModifiedEntries(people);
 //        app.write1(people);
      }
+
+
+
+    private static List<Person> CountingPersonHaveLimitAnimals(List<Person> people, final int i) {
+        List<Person> list = people.stream().filter(person -> (person.getAnimalList()!=null)&&(person.getAnimalList().size()>=i)).collect(Collectors.toList());
+        return list;
+    }
+
+    private static Map<String,Long> CoutingAnimalsBySpecies(List<Animal> animals) {
+        long start = System.currentTimeMillis();
+        Map<String,Long> map = animals.stream().map(Animal::getSpecies)
+                .collect(Collectors.groupingBy(animal->animal,Collectors.counting()));
+        long stop = System.currentTimeMillis();
+        System.out.println("met3: "+(stop-start));
+        return map;
+    }
+
 
     private static List<Person> filterLambda(List<Person> people) {
         long start = System.currentTimeMillis();
@@ -114,13 +141,26 @@ public class Main {
         return list;
     }
 
-    private static long CountRentiredPeople(List<Person> people) {
+    private static long CountRentiredPeopleForEach(List<Person> people) {
+        long start = System.currentTimeMillis();
         long counter = 0;
         for (Person person : people) {
             if ((person.getSex().equals("F") && (person.getAge() >= 60)) || (person.getSex().equals("M")) && (person.getAge() >= 65))
                 counter++;
         }
+        long stop = System.currentTimeMillis();
+        System.out.println(" foreach long: "+(stop-start) );
         return counter;
+    }
+    private static long CountRentiredPeopleLambda(List<Person> people) {
+        long start= System.currentTimeMillis();
+        long counter = people.stream()
+                .filter(person -> ((person.getSex().equals("F") && (person.getAge() >= 60))||((person.getSex().equals("M") && (person.getAge() >= 65)))))
+                .count();
+        long stop = System.currentTimeMillis();
+        System.out.println(" lambda long: "+(stop-start) );
+        return counter;
+
     }
 
 
@@ -157,8 +197,7 @@ public class Main {
     private static Map<String,Long> countingByLastName(List<Person> people) {
         Long start = System.currentTimeMillis();
         Map<String,Long> map = people.stream()
-                .map(Person::getLastName)
-                .collect(Collectors.groupingBy(person -> person, Collectors.counting()));
+                .map(Person::getLastName).collect(Collectors.groupingBy(person -> person, Collectors.counting()));
         Long stop = System.currentTimeMillis();
         System.out.println("Policzone metoda_3 w "+ (stop - start));
         return map;

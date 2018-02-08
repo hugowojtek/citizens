@@ -167,17 +167,19 @@ public class MyCitizensApps {
 
     //count how many animals every species
 
-    public Map<String, Integer> calculate_9(List<Animal> animals) {
+    public Map<String, Integer> calculate_90(List<Animal> animals) {
+        long start = System.currentTimeMillis();
         Map<String, Integer> map = new LinkedHashMap<String, Integer>();
         for (Animal animal : animals) {
             if (!(map.containsKey(animal.getSpecies()))) {
                 map.put(animal.getSpecies(), count_9(animals, animal.getSpecies()));
             }
         }
+        long stop = System.currentTimeMillis();
+        System.out.println("met1: "+(stop-start));
         return map;
 
     }
-
 
     private Integer count_9(List<Animal> animals, String species) {
         Integer counter = 0;
@@ -189,6 +191,18 @@ public class MyCitizensApps {
         return counter;
     }
 
+    public Map<String,Integer> calculate_91(List<Animal> animals){
+        long start = System.currentTimeMillis();
+        Map<String,Integer> map = new LinkedHashMap<>();
+        for (Animal animal:animals){
+            int i = map.getOrDefault(animal.getSpecies(),0);
+            i++;
+            map.put(animal.getSpecies(),i);
+        }
+        long stop = System.currentTimeMillis();
+        System.out.println("met2: "+(stop-start));
+        return map;
+    }
     //count how many people have at least ANIMAL_LIMITS
 
     public List<Person> calculate_10(List<Person> people) {
@@ -199,6 +213,8 @@ public class MyCitizensApps {
         }
         return list;
     }
+
+
 
     //filter of people
 
