@@ -7,8 +7,8 @@ import java.io.*;
 public class IO_bytes {
 
     public void realization(String s, String s1) throws IOException{
-        InputStream inputStream = null;
-        OutputStream outputStream = null;
+        FileInputStream inputStream = null;
+        FileOutputStream outputStream = null;
         int c;
         int i = 0;
         int[] tab = new int[255];
